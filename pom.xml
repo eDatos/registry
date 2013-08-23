@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.siemac.metamac.metamac-registry</groupId>
+        <artifactId>metamac-registry-parent</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+        <relativePath>metamac-registry-parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>metamac-registry</artifactId>
+    <name>SIEMAC :: METAMAC :: REGISTRY</name>
+    <packaging>pom</packaging>
+
+    <scm>
+	<connection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</connection>
+        <developerConnection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</developerConnection>
+        <url>http://svn.arte-consultores.com/viewvc/arte/istac/metamac/metamac-registry/trunk/</url>
+    </scm>
+
+    <modules>
+        <module>metamac-registry-parent</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
