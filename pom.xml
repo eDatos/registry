@@ -21,6 +21,7 @@
 
     <modules>
         <module>metamac-registry-parent</module>
+        <module>metamac-registry-web</module>
     </modules>
 
     <build>

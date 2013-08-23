@@ -11,20 +11,12 @@
     <artifactId>metamac-registry-parent</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>SIEMAC :: METAMAC :: SRM :: PARENT</name>
-    <description>SIEMAC :: METAMAC :: SRM :: PARENT</description>
+    <name>SIEMAC :: METAMAC :: REGISTRY :: PARENT</name>
+    <description>SIEMAC :: METAMAC :: REGISTRY :: PARENT</description>
 
     <properties>
-       
+    	<statistic-sdmx-srm.version>1.1.1-SNAPSHOT</statistic-sdmx-srm.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>smartclient</id>
-            <name>smartclient.com</name>
-            <url>http://www.smartclient.com/maven2</url>
-        </repository>
-    </repositories>
 
     <dependencyManagement>
         <dependencies>
