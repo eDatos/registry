@@ -29,7 +29,7 @@ public class ApplicationStartup implements ServletContextListener {
 
     private void checkConfiguration() {
         LOG.info("**********************************************************");
-        LOG.info("Checking application configuration");
+        LOG.info("[metamac-registry-web] Checking application configuration");
         LOG.info("**********************************************************");
 
         // Datasource
@@ -44,7 +44,7 @@ public class ApplicationStartup implements ServletContextListener {
         configurationService.checkRequiredProperty(SrmConfigurationConstants.METAMAC_ORGANISATION);
 
         LOG.info("**********************************************************");
-        LOG.info("Application configuration checked");
+        LOG.info("[metamac-registry-web] Application configuration checked");
         LOG.info("**********************************************************");
     }
 
