@@ -16,6 +16,7 @@
 
     <properties>
     	<statistic-sdmx-srm.version>1.1.1-SNAPSHOT</statistic-sdmx-srm.version>
+    	<metamac-sdmx-data-rest-external.version>1.0.0-SNAPSHOT</metamac-sdmx-data-rest-external.version>
     </properties>
 
     <dependencyManagement>
