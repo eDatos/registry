@@ -29,6 +29,12 @@
         </dependency>
         
         <dependency>
+            <groupId>org.siemac.metamac.metamac-statistical-resources</groupId>
+            <artifactId>metamac-sdmx-data-rest-external-impl</artifactId>
+            <version>${metamac-sdmx-data-rest-external.version}</version>
+        </dependency>
+        
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
