@@ -7,11 +7,16 @@
     <!--  **************************** DATASOURCES ***************************************************** -->
     <!--  ********************************************************************************************** -->
     
-    <!-- ORACLE -->
-    <entry key="metamac.srm.db.url">jdbc:oracle:thin:@FILL_ME_WITH_HOST:FILL_ME_WITH_PORT:XE</entry>
+    <!-- ORACLE SRM-->
+<!--     <entry key="metamac.srm.db.url">jdbc:oracle:thin:@FILL_ME_WITH_HOST:FILL_ME_WITH_PORT:XE</entry> -->
+<!--     <entry key="metamac.srm.db.driver_name">oracle.jdbc.OracleDriver</entry> -->
+<!--     <entry key="metamac.srm.db.username">FILL_ME_WITH_USERNAME</entry> -->
+<!--     <entry key="metamac.srm.db.password">FILL_ME_WITH_PASSWORD</entry> -->
+<!--     <entry key="metamac.srm.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry> -->
+    <entry key="metamac.srm.db.url">jdbc:oracle:thin:@oracle-dev:1521:XE</entry>
     <entry key="metamac.srm.db.driver_name">oracle.jdbc.OracleDriver</entry>
-    <entry key="metamac.srm.db.username">FILL_ME_WITH_USERNAME</entry>
-    <entry key="metamac.srm.db.password">FILL_ME_WITH_PASSWORD</entry>
+    <entry key="metamac.srm.db.username">jenkins_statistic_sdmx_srm</entry>
+    <entry key="metamac.srm.db.password">jenkins_statistic_sdmx_srm</entry>
     <entry key="metamac.srm.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry>
     <!-- MSSQL -->
     <!--
@@ -21,6 +26,31 @@
         <entry key="metamac.srm.db.password">FILL_ME_WITH_PASSWORD</entry>
         <entry key="metamac.srm.db.dialect">org.hibernate.dialect.SQLServerDialect</entry>
     -->
+    
+    <!-- ORACLE STATRESOURCES-->
+<!--   <entry key="metamac.statistical_resources.db.url">jdbc:oracle:thin:@FILL_ME_WITH_HOST:FILL_ME_WITH_PORT:XE</entry> -->
+<!--   <entry key="metamac.statistical_resources.db.driver_name">oracle.jdbc.OracleDriver</entry> -->
+<!--   <entry key="metamac.statistical_resources.db.username">FILL_ME_WITH_USERNAME</entry> -->
+<!--   <entry key="metamac.statistical_resources.db.password">FILL_ME_WITH_PASSWORD</entry> -->
+<!--   <entry key="metamac.statistical_resources.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry> -->
+  
+<!--     <entry key="metamac.statistical_resources.repo.db.url">jdbc:oracle:thin:@FILL_ME_WITH_HOST:FILL_ME_WITH_PORT:XE</entry> -->
+<!--     <entry key="metamac.statistical_resources.repo.db.driver_name">oracle.jdbc.OracleDriver</entry> -->
+<!--     <entry key="metamac.statistical_resources.repo.db.username">FILL_ME_WITH_USERNAME</entry> -->
+<!--     <entry key="metamac.statistical_resources.repo.db.password">FILL_ME_WITH_PASSWORD</entry> -->
+<!--     <entry key="metamac.statistical_resources.repo.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry> -->
+    <entry key="metamac.statistical_resources.db.url">jdbc:oracle:thin:@oracle-dev:1521:XE</entry>
+    <entry key="metamac.statistical_resources.db.driver_name">oracle.jdbc.OracleDriver</entry>
+    <entry key="metamac.statistical_resources.db.username">jenkins_metamac_stat_resources</entry>
+    <entry key="metamac.statistical_resources.db.password">jenkins_metamac_stat_resources</entry>
+    <entry key="metamac.statistical_resources.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry>
+  
+    <entry key="metamac.statistical_resources.repo.db.url">jdbc:oracle:thin:@oracle-dev:1521:XE</entry>
+    <entry key="metamac.statistical_resources.repo.db.driver_name">oracle.jdbc.OracleDriver</entry>
+    <entry key="metamac.statistical_resources.repo.db.username">jenkins_metamac_stat_resources</entry>
+    <entry key="metamac.statistical_resources.repo.db.password">jenkins_metamac_stat_resources</entry>
+    <entry key="metamac.statistical_resources.repo.db.dialect">org.siemac.metamac.hibernate.dialect.Oracle10gDialectMetamac</entry>
+    
     
     <!--  ********************************************************************************************** -->
     <!--  **************************** APIS ************************************************************ -->
