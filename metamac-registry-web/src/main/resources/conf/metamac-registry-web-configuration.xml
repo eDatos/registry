@@ -58,4 +58,7 @@
     <!-- The following URN and Name must be the same in the SQL script provided -->
     <entry key="metamac.organisation.urn">urn:sdmx:org.sdmx.infomodel.base.Agency=SDMX:AGENCIES(1.0).FILL_ME_WITH_ORGANISATION_NAME</entry>
 	<entry key="metamac.organisation">FILL_ME_WITH_ORGANISATION_NAME</entry>
+	<entry key="metamac.sdmx.registry.rest.external">http://localhost:8080/metamac-registry-web/apis/registry</entry>
+	<entry key="metamac.sdmx.srm.rest.external">http://localhost:8080/metamac-registry-web/structure/registry</entry>
+	<entry key="metamac.sdmx.statistical_resources.rest.external">http://localhost:8080/metamac-registry-web/data/registry</entry>
 </properties>
