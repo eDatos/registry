@@ -2,8 +2,13 @@
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
         "http://tuckey.org/res/dtds/urlrewrite4.0.dtd">
         
-<urlrewrite>
+<urlrewrite use-query-string="true">
 
+ 	<rule>
+        <from>^/.*_wadl.*$</from>
+        <to type="redirect" last="true">%{context-path}/static/wadl/sdmx-rest.wadl</to>
+    </rule>
+    
    <rule>
         <from>^/apis/registry/(.*/data(?:/.*)?)$</from>
         <to type="forward" last="true">/data/registry/$1</to>
@@ -13,5 +18,6 @@
         <from>^/apis/registry/(.*)$</from>
         <to type="forward" last="true">/structure/registry/$1</to>
     </rule>
-
+    
+    
 </urlrewrite>
