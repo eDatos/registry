@@ -1,0 +1,4 @@
+
+- Añadida propiedad en 'metamac-registry-web-configuration.xml':
+
+metamac.sdmx.statistical_resources.rest.external
