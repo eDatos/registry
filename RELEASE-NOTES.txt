@@ -1,0 +1,11 @@
+========================================================================
+METAMAC-REGISTRY -- Registro SDMX del proyecto METAMAC
+========================================================================
+
+API del Registro SDMX desarrollada dentro de METAMAC.
+
+Provee los métodos relativos a datos y estructuras.
+
+Por favor, consulta nuestro gestor de incidencia para obtener más información
+de las incidencias con el id [METAMAC-xxx].
+http://jira.arte-consultores.com/browse/METAMAC
