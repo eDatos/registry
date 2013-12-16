@@ -1,6 +1,0 @@
-
-- Añadidas propiedades en 'metamac-registry-web-configuration.xml':
-
-"metamac.sdmx.registry.rest.external", EXAMPLE:  http://localhost:8080/metamac-registry-web/apis/registry
-"metamac.sdmx.srm.rest.external", EXAMPLE: http://localhost:8080/metamac-registry-web/structure/registry
-"metamac.sdmx.statistical_resources.rest.external", EXAMPLE: http://localhost:8080/metamac-registry-web/data/registry
