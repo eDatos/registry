@@ -68,4 +68,9 @@
             <version>${commons-dbcp.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>sdmx-registry-${project.version}</finalName>
+    </build>
+    
 </project>
