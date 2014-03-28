@@ -4,9 +4,17 @@
         
 <urlrewrite use-query-string="true">
 
+	<!-- Remeber -->
+	<!-- With type "forward", use "/" -->
+	<!-- With type "redirect", use "%{context-path}" -->
+
+<!--  	<rule> -->
+<!--         <from>^/.*_wadl.*$</from> -->
+<!--         <to type="forward" last="true">%{context-path}/downloadWadl</to> -->
+<!--     </rule> -->
  	<rule>
-        <from>^/.*_wadl.*$</from>
-        <to type="redirect" last="true">%{context-path}/static/wadl/sdmx-rest.wadl</to>
+        <from>(^/apis/registry/.*/).*_wadl.*$</from>
+        <to type="forward" last="true">/downloadWadl?path=$1</to>
     </rule>
     
    <rule>

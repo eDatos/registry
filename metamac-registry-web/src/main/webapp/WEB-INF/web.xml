@@ -69,9 +69,18 @@
         <servlet-name>CXFServletData</servlet-name>
         <url-pattern>/data/*</url-pattern>
     </servlet-mapping>
-        
-        
-        
+
+	<servlet>
+		<description></description>
+		<display-name>DownloadWadl</display-name>
+		<servlet-name>DownloadWadl</servlet-name>
+		<servlet-class>org.siemac.metamac.srm.registry.servlet.DownloadWadl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DownloadWadl</servlet-name>
+		<url-pattern>/downloadWadl</url-pattern>
+	</servlet-mapping>
+    
 <!--     <servlet-mapping> -->
 <!--         <servlet-name>dispatch</servlet-name> -->
 <!--         <url-pattern>/dispatch/*</url-pattern> -->
