@@ -12,6 +12,19 @@ http://jira.arte-consultores.com/browse/METAMAC
 
 
 ------------------------------------------------------------------------------
+Release 1.0.1
+------------------------------------------------------------------------------
+
+Notas de publicación - Metamac - Versión registry - 1.0.1
+
+** Tarea
+    * [METAMAC-2082] - Cambio de los nombres de los war
+    * [METAMAC-2133] - Cambiar driver a oracle 11 para pasar los tests en jenkins
+
+** Subtarea
+    * [METAMAC-1909] - [API] La api externa debe consumir api externa de SRM
+
+------------------------------------------------------------------------------
 Release 1.0.0
 ------------------------------------------------------------------------------
 
