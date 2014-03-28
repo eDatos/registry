@@ -5,6 +5,7 @@ URLS EXAMPLES FORMAT
 
 PUBLIC:
 =======
+--> WADL (caulquiera con un parámetro _wadl
 
 -->	http://localhost:8080/metamac-registry-web/apis/registry/v2.1/agencyscheme
 --> http://localhost:8080/metamac-registry-web/apis/registry/v2.1/organisationunitscheme
@@ -29,18 +30,7 @@ Examples::
 --> http://localhost:8080/metamac-registry-web/data/registry/v2.1/dataflow
 --> http://localhost:8080/metamac-registry-web/data/registry/v2.1/categorisation
 
-
-	WADL:
-	------
-	
-	Cualquier URL con parámetro ?_wadl (ejemplo: http://localhost:8080/metamac-registry-web/data/registry/v2.1?_wadl)
-	se convierte a:	
-	--> http://localhost:8080/metamac-registry-web/static/wadl/sdmx-rest.wadl
-
-
-	PRINCIPAL:
-	------
-	-->	http://localhost:8080/metamac-registry-web/data
-	-->	http://localhost:8080/metamac-registry-web/structure
+-->	http://localhost:8080/metamac-registry-web/data
+-->	http://localhost:8080/metamac-registry-web/structure
 	
 	
