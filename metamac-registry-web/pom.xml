@@ -22,16 +22,17 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.arte.statistic.statistic-sdmx-srm</groupId>
-            <artifactId>statistic-sdmx-srm-rest-external-impl</artifactId>
-            <version>${statistic-sdmx-srm-rest-external.version}</version>
-        </dependency>
-        
+    
         <dependency>
             <groupId>org.siemac.metamac.metamac-statistical-resources</groupId>
             <artifactId>metamac-sdmx-data-rest-external-impl</artifactId>
             <version>${metamac-sdmx-data-rest-external.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.arte.statistic.statistic-sdmx-srm</groupId>
+            <artifactId>statistic-sdmx-srm-rest-external-impl</artifactId>
+            <version>${statistic-sdmx-srm-rest-external.version}</version>
         </dependency>
         
         <dependency>
