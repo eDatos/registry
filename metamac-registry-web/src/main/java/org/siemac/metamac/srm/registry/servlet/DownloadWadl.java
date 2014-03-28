@@ -16,9 +16,10 @@ import org.apache.commons.io.IOUtils;
 
 public class DownloadWadl extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 
-    static final long        serialVersionUID = 1L;
-    private static final int BUFSIZE          = 4096;
-    private String           filePath;
+    static final long           serialVersionUID = 1L;
+    private static final int    BUFSIZE          = 4096;
+    private String              filePath;
+    private static final String patttern         = "(/apis/registry/[^/\\?]+)/?.*";
 
     @Override
     public void init() {
@@ -35,12 +36,9 @@ public class DownloadWadl extends javax.servlet.http.HttpServlet implements java
 
         // Create a temp file with replace base api URL
         String content = IOUtils.toString(new FileInputStream(file), "UTF-8");
-        StringBuilder replaceContent = new StringBuilder("base=\"");
-        replaceContent.append(request.getRequestURL());
-        replaceContent.delete(replaceContent.length() - request.getServletPath().length(), replaceContent.length());
-        replaceContent.append(request.getParameter("path"));
-        replaceContent.append("\"");
+        StringBuilder replaceContent = replacebaseUrl(request);
         content = content.replaceFirst("base=\"http://www.sdmx.org/sdmxrestservice/\"", replaceContent.toString());
+
         File tempFile = File.createTempFile("down_", ".tmp");
         IOUtils.write(content, new FileOutputStream(tempFile), "UTF-8");
         file = tempFile;
@@ -68,5 +66,14 @@ public class DownloadWadl extends javax.servlet.http.HttpServlet implements java
 
         outStream.close();
         tempFile.delete();
+    }
+
+    protected StringBuilder replacebaseUrl(HttpServletRequest request) {
+        StringBuilder replaceContent = new StringBuilder("base=\"");
+        replaceContent.append(request.getRequestURL());
+        replaceContent.delete(replaceContent.length() - request.getServletPath().length(), replaceContent.length());
+        replaceContent.append(request.getParameter("path").replaceFirst(patttern, "$1"));
+        replaceContent.append("/\"");
+        return replaceContent;
     }
 }
