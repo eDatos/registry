@@ -1,77 +1,45 @@
 package org.siemac.metamac.srm.registry;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.siemac.metamac.core.common.conf.ConfigurationService;
-import org.siemac.metamac.core.common.util.ApplicationContextProvider;
+import org.siemac.metamac.core.common.exception.MetamacException;
+import org.siemac.metamac.core.common.listener.ApplicationStartupListener;
 import org.siemac.metamac.sdmx.data.rest.external.conf.DataConfigurationConstants;
 
 import com.arte.statistic.sdmx.srm.core.constants.SdmxSrmConfigurationConstants;
 
-public class ApplicationStartup implements ServletContextListener {
-
-    private static final Log     LOG = LogFactory.getLog(ApplicationStartup.class);
-
-    private ConfigurationService configurationService;
+public class ApplicationStartup extends ApplicationStartupListener {
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
-        try {
-            configurationService = ApplicationContextProvider.getApplicationContext().getBean(ConfigurationService.class);
-            checkConfiguration();
-        } catch (Exception e) {
-            // Abort startup application
-            throw new RuntimeException(e);
-        }
+    public String projectName() {
+        return "sdmx-registry";
     }
 
-    private void checkConfiguration() {
-        LOG.info("**********************************************************");
-        LOG.info("[metamac-registry-web] Checking application configuration: Datasource SRM");
-        LOG.info("**********************************************************");
+    @Override
+    public void checkApplicationProperties() throws MetamacException {
+        // Datasource
+        checkRequiredProperty(SdmxSrmConfigurationConstants.DB_DRIVER_NAME);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.DB_URL);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.DB_USERNAME);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.DB_PASSWORD);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.DB_DIALECT);
 
         // Datasource
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.DB_DRIVER_NAME);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.DB_URL);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.DB_USERNAME);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.DB_PASSWORD);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.DB_DIALECT);
+        checkRequiredProperty(DataConfigurationConstants.DB_URL);
+        checkRequiredProperty(DataConfigurationConstants.DB_USERNAME);
+        checkRequiredProperty(DataConfigurationConstants.DB_PASSWORD);
+        checkRequiredProperty(DataConfigurationConstants.DB_DIALECT);
+        checkRequiredProperty(DataConfigurationConstants.DB_DRIVER_NAME);
 
-        LOG.info("**********************************************************");
-        LOG.info("[metamac-registry-web] Application configuration checked: Datasource STATISTICAL_RESOURCES AND STATISTICAL_RESOURCES_REPOSITORY");
-        LOG.info("**********************************************************");
-
-        // Datasource
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_URL);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_USERNAME);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_PASSWORD);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_DIALECT);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_DRIVER_NAME);
-
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_URL);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_USERNAME);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_PASSWORD);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_DIALECT);
-        configurationService.checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_DRIVER_NAME);
-
-        LOG.info("**********************************************************");
-        LOG.info("[metamac-registry-web] Checking application configuration: APIS");
-        LOG.info("**********************************************************");
+        checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_URL);
+        checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_USERNAME);
+        checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_PASSWORD);
+        checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_DIALECT);
+        checkRequiredProperty(DataConfigurationConstants.DB_REPOSITORY_DRIVER_NAME);
 
         // Api
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.METAMAC_ORGANISATION_URN);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.METAMAC_ORGANISATION);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_REGISTRY_EXTERNAL_API);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_SRM_EXTERNAL_API);
-        configurationService.checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_STATISTICAL_RESOURCES_EXTERNAL_API);
-
+        checkRequiredProperty(SdmxSrmConfigurationConstants.METAMAC_ORGANISATION_URN);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.METAMAC_ORGANISATION);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_REGISTRY_EXTERNAL_API);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_SRM_EXTERNAL_API);
+        checkRequiredProperty(SdmxSrmConfigurationConstants.ENDPOINT_SDMX_STATISTICAL_RESOURCES_EXTERNAL_API);
     }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-    }
-
 }
