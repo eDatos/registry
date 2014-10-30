@@ -2,7 +2,7 @@
 <!DOCTYPE configuration>
 <configuration>
 
-    <property name="LOGS_HOME" value="/data/istac/metamac/registry/logs" />
+    <property name="LOGS_HOME" value="/data/metamac/registry/logs" />
 
 
 
