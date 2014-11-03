@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.siemac.metamac.metamac-registry</groupId>
         <artifactId>metamac-registry-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1-SNAPSHOT</version>
         <relativePath>metamac-registry-parent/pom.xml</relativePath>
     </parent>
 
@@ -14,9 +14,9 @@
     <packaging>pom</packaging>
 
     <scm>
-	<connection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/tags/20141103-0823-v1.1.0</connection>
-        <developerConnection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/tags/20141103-0823-v1.1.0</developerConnection>
-        <url>http://svn.arte-consultores.com/viewvc/arte/istac/metamac/metamac-registry/tags/20141103-0823-v1.1.0</url>
+	<connection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</connection>
+        <developerConnection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</developerConnection>
+        <url>http://svn.arte-consultores.com/viewvc/arte/istac/metamac/metamac-registry/trunk/</url>
     </scm>
 
     <modules>
