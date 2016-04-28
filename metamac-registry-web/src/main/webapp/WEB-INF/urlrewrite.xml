@@ -12,6 +12,12 @@
 <!--         <from>^/.*_wadl.*$</from> -->
 <!--         <to type="forward" last="true">%{context-path}/downloadWadl</to> -->
 <!--     </rule> -->
+
+    <rule>
+        <from>/apis/registry/latest</from>
+        <to type="redirect">/registry/v2.1</to>
+    </rule>
+
  	<rule>
         <from>(^/apis/registry/.+)/?.*_wadl.*$</from>
         <to type="forward" last="true">/downloadWadl?path=$1</to>
@@ -26,6 +32,5 @@
         <from>^/apis/registry/(.*)$</from>
         <to type="forward" last="true">/structure/registry/$1</to>
     </rule>
-    
     
 </urlrewrite>
