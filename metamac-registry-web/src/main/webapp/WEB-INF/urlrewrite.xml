@@ -15,7 +15,7 @@
 
     <rule>
         <from>/apis/registry/latest</from>
-        <to type="redirect">/registry/v2.1</to>
+        <to type="redirect">%{context-path}/v2.1/</to>
     </rule>
 
  	<rule>
