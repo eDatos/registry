@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.siemac.metamac.metamac-registry</groupId>
         <artifactId>metamac-registry-parent</artifactId>
-        <version>1.2.1-SNAPSHOT</version>
+        <version>1.2.1</version>
         <relativePath>../metamac-registry-parent/pom.xml</relativePath>
     </parent>
 
