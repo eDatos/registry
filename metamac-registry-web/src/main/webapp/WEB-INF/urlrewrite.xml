@@ -13,10 +13,7 @@
 <!--         <to type="forward" last="true">%{context-path}/downloadWadl</to> -->
 <!--     </rule> -->
 
-    <rule>
-        <from>/apis/registry/latest</from>
-        <to type="redirect">%{context-path}/v2.1/</to>
-    </rule>
+    <class-rule class="org.siemac.metamac.srm.registry.urlrewrite.RegistryRewriteRule"/>
 
  	<rule>
         <from>(^/apis/registry/.+)/?.*_wadl.*$</from>
