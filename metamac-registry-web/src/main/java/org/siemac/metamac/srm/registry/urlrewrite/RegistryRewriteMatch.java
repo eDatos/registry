@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.siemac.metamac.core.common.conf.ConfigurationService;
 import org.siemac.metamac.core.common.exception.MetamacException;
 import org.siemac.metamac.core.common.util.ApplicationContextProvider;
@@ -39,7 +40,11 @@ public class RegistryRewriteMatch extends RewriteMatch {
                 String location = buildTargetLocation(SDMX_API_VERSION, requestPathAfterVersion, queryString);
                 response.sendRedirect(location);
                 return true;
-            } else if (requestPathAfterVersion.startsWith("/data")) {
+            } else if (StringUtils.isNotBlank(queryString) && queryString.contains("_wadl")) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/downloadWadl?path=/apis/registry/v2.1?_wadl");
+                requestDispatcher.forward(request, response);
+                return true;
+            } else if (requestPathAfterVersion != null && requestPathAfterVersion.startsWith("/data")) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/data/registry/" + requestApiVersion + requestPathAfterVersion);
                 requestDispatcher.forward(request, response);
                 return true;
