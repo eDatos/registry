@@ -1,33 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
         "http://tuckey.org/res/dtds/urlrewrite4.0.dtd">
-        
+
 <urlrewrite use-query-string="true">
 
-	<!-- Remeber -->
-	<!-- With type "forward", use "/" -->
-	<!-- With type "redirect", use "%{context-path}" -->
+    <!-- Remember -->
+    <!-- With type "forward", use "/" -->
+    <!-- With type "redirect", use "%{context-path}" -->
 
-<!--  	<rule> -->
-<!--         <from>^/.*_wadl.*$</from> -->
-<!--         <to type="forward" last="true">%{context-path}/downloadWadl</to> -->
-<!--     </rule> -->
+    <class-rule class="org.siemac.metamac.srm.registry.urlrewrite.RegistryRewriteRule" />
 
-    <class-rule class="org.siemac.metamac.srm.registry.urlrewrite.RegistryRewriteRule"/>
-
- 	<rule>
+    <rule>
         <from>(^/apis/registry/.+)/?.*_wadl.*$</from>
         <to type="forward" last="true">/downloadWadl?path=$1</to>
     </rule>
-    
-   <rule>
-        <from>^/apis/registry/(.*/data(?:/.*)?)$</from>
-        <to type="forward" last="true">/data/registry/$1</to>
-    </rule>
-    
-   <rule>
-        <from>^/apis/registry/(.*)$</from>
-        <to type="forward" last="true">/structure/registry/$1</to>
-    </rule>
-    
+
 </urlrewrite>

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ public class RegistryRewriteMatch extends RewriteMatch {
 
     private static final String  SDMX_API_VERSION     = "v2.1";
 
-    private Pattern              urlPattern           = Pattern.compile(".*/apis/registry/" + API_LATEST + "(/(.*)?)?");
+    private Pattern              urlPattern           = Pattern.compile(".*/apis/registry/(" + API_LATEST + "|" + SDMX_API_VERSION + ")(/(.*)?)?");
 
     private ConfigurationService configurationService = null;
 
@@ -31,12 +32,24 @@ public class RegistryRewriteMatch extends RewriteMatch {
         String requestURI = ((HttpServletRequest) request).getRequestURI();
         String queryString = ((HttpServletRequest) request).getQueryString();
         Matcher matcher = urlPattern.matcher(requestURI);
-        if (matcher.matches() && matcher.groupCount() > 1) {
-            String requestPathAfterVersion = matcher.group(1);
-            String location = buildTargetLocation(SDMX_API_VERSION, requestPathAfterVersion, queryString);
-            response.sendRedirect(location);
+        if (matcher.matches() && matcher.groupCount() > 2) {
+            String requestApiVersion = matcher.group(1);
+            String requestPathAfterVersion = matcher.group(2);
+            if (API_LATEST.equals(requestApiVersion)) {
+                String location = buildTargetLocation(SDMX_API_VERSION, requestPathAfterVersion, queryString);
+                response.sendRedirect(location);
+                return true;
+            } else if (requestPathAfterVersion.startsWith("/data")) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/data/registry/" + requestApiVersion + requestPathAfterVersion);
+                requestDispatcher.forward(request, response);
+                return true;
+            } else {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/structure/registry/" + requestApiVersion + requestPathAfterVersion);
+                requestDispatcher.forward(request, response);
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     private String buildTargetLocation(String apiVersion, String requestPathAfterVersion, String queryString) throws ServletException {
