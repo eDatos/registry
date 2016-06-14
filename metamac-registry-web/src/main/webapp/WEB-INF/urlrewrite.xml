@@ -8,11 +8,11 @@
     <!-- With type "forward", use "/" -->
     <!-- With type "redirect", use "%{context-path}" -->
 
-    <class-rule class="org.siemac.metamac.srm.registry.urlrewrite.RegistryRewriteRule" />
-
     <rule>
         <from>(^/apis/registry/.+)/?.*_wadl.*$</from>
         <to type="forward" last="true">/downloadWadl?path=$1</to>
     </rule>
+
+    <class-rule class="org.siemac.metamac.srm.registry.urlrewrite.RegistryRewriteRule" />
 
 </urlrewrite>
