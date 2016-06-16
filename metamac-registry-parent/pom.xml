@@ -9,7 +9,7 @@
 
     <groupId>org.siemac.metamac.metamac-registry</groupId>
     <artifactId>metamac-registry-parent</artifactId>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>1.2.2</version>
     <packaging>pom</packaging>
     <name>SIEMAC :: METAMAC :: REGISTRY :: PARENT</name>
     <description>SIEMAC :: METAMAC :: REGISTRY :: PARENT</description>
@@ -24,5 +24,11 @@
 
         </dependencies>
     </dependencyManagement>
+
+  <scm>
+    <connection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-parent/tags/20160616-0858-v1.2.2/metamac-registry-parent</connection>
+    <developerConnection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-parent/tags/20160616-0858-v1.2.2/metamac-registry-parent</developerConnection>
+    <url>http://svn.arte-consultores.com/viewvc/arte/istac/metamac/metamac-parent/tags/20160616-0858-v1.2.2/metamac-registry-parent</url>
+  </scm>
 </project>
 
