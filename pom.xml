@@ -13,10 +13,11 @@
     <name>SIEMAC :: METAMAC :: REGISTRY</name>
     <packaging>pom</packaging>
 
-    <scm>
-	<connection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</connection>
-        <developerConnection>scm:svn:http://svn.arte-consultores.com/svn/arte/istac/metamac/metamac-registry/trunk/</developerConnection>
-        <url>http://svn.arte-consultores.com/viewvc/arte/istac/metamac/metamac-registry/trunk/</url>
+	<scm>
+        <connection>scm:git:https://git.arte-consultores.com/r/istac/metamac-registry.git</connection>
+        <developerConnection>scm:git:https://git.arte-consultores.com/r/istac/metamac-registry.git</developerConnection>
+        <url>https://git.arte-consultores.com/r/istac/metamac-registry.git</url>
+        <tag>HEAD</tag>
     </scm>
 
     <modules>
