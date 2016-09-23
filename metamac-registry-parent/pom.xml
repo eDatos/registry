@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.siemac.metamac</groupId>
         <artifactId>metamac-parent</artifactId>
-        <version>2.0.4-SNAPSHOT</version>
+        <version>3.0.0</version>
     </parent>
 
     <groupId>org.siemac.metamac.metamac-registry</groupId>
@@ -15,13 +15,12 @@
     <description>SIEMAC :: METAMAC :: REGISTRY :: PARENT</description>
 
     <properties>
-    	<statistic-sdmx-srm-rest-external.version>1.5.1-SNAPSHOT</statistic-sdmx-srm-rest-external.version>
-    	<metamac-sdmx-data-rest-external.version>1.4.1-SNAPSHOT</metamac-sdmx-data-rest-external.version>
+    	<statistic-sdmx-srm-rest-external.version>2.0.0</statistic-sdmx-srm-rest-external.version>
+    	<metamac-sdmx-data-rest-external.version>2.0.0</metamac-sdmx-data-rest-external.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
         </dependencies>
     </dependencyManagement>
 </project>
