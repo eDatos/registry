@@ -10,19 +10,19 @@
                         http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <!-- Activates annotation-based bean configuration -->
-<!--     <context:annotation-config /> -->
+    <context:annotation-config />
 
     <!-- METAMAC environment configuration -->
-<!--     <bean id="configurationService" class="org.siemac.metamac.core.common.conf.ConfigurationServiceImpl"> -->
-<!--         <property name="systemConfigurationFile"> -->
-<!--             <value>classpath:metamac/environment.xml</value> -->
-<!--         </property> -->
-<!--     </bean> -->
+    <bean id="configurationService" class="org.siemac.metamac.core.common.conf.ConfigurationServiceImpl">
+        <property name="systemConfigurationFile">
+            <value>classpath:metamac/environment.xml</value>
+        </property>
+    </bean>
 
-<!--     <bean id="propertyPlaceholderConfigurer" class="org.siemac.metamac.core.common.conf.ConfigurationServicePropertyPlaceholderConfigurer"> -->
-<!--         <property name="configurationService"> -->
-<!--             <ref bean="configurationService" /> -->
-<!--         </property> -->
-<!--     </bean> -->
-    
+    <bean id="propertyPlaceholderConfigurer" class="org.siemac.metamac.core.common.conf.ConfigurationServicePropertyPlaceholderConfigurer">
+        <property name="configurationService">
+            <ref bean="configurationService" />
+        </property>
+    </bean>
+
 </beans>

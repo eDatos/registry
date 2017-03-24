@@ -22,17 +22,24 @@ import org.tuckey.web.filters.urlrewrite.extend.RewriteMatch;
 
 public class RegistryRewriteMatch extends RewriteMatch {
 
-    private static final String  SDMX_API_VERSION     = "v2.1";
+    private static final String  SDMX_API_VERSION        = "v2.1";
 
-    private Pattern              urlPattern           = Pattern.compile(".*/apis/registry/(" + API_LATEST + "|" + SDMX_API_VERSION + ")(/(.*)?)?");
+    private Pattern              urlPattern              = Pattern.compile(".*/apis/registry/(" + API_LATEST + "|" + SDMX_API_VERSION + ")(/(.*)?)?");
+    private Pattern              swaggerResourcesPattern = Pattern.compile(".*/apis/(" + "registry" + ")(/swagger-ui/.*)");
 
-    private ConfigurationService configurationService = null;
+    private ConfigurationService configurationService    = null;
 
     @Override
     public boolean execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestURI = ((HttpServletRequest) request).getRequestURI();
         String queryString = ((HttpServletRequest) request).getQueryString();
         Matcher matcher = urlPattern.matcher(requestURI);
+        Matcher swaggerResourcesMatcher = swaggerResourcesPattern.matcher(requestURI);
+        if (swaggerResourcesMatcher.matches() && matcher.groupCount() > 1) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher(swaggerResourcesMatcher.group(2));
+            requestDispatcher.forward(request, response);
+            return true;
+        }
         if (matcher.matches() && matcher.groupCount() > 2) {
             String requestApiVersion = matcher.group(1);
             String requestPathAfterVersion = matcher.group(2);
@@ -48,12 +55,21 @@ public class RegistryRewriteMatch extends RewriteMatch {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/data/registry/" + requestApiVersion + requestPathAfterVersion);
                 requestDispatcher.forward(request, response);
                 return true;
+            } else if (requestPathAfterVersion == null && requestURI.endsWith(requestApiVersion) && isBlank(queryString)) {
+                String location = buildTargetLocation(requestApiVersion, requestPathAfterVersion, queryString);
+                response.sendRedirect(location);
+                return true;
+            } else if (requestURI.endsWith(SDMX_API_VERSION + "/") && isBlank(queryString)) {
+                return false;
+            } else if (StringUtils.isNotBlank(requestPathAfterVersion) && requestPathAfterVersion.equals("/swagger.jsp")) {
+                return false;
             } else {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/structure/registry/" + requestApiVersion + requestPathAfterVersion);
                 requestDispatcher.forward(request, response);
                 return true;
             }
         }
+
         return false;
     }
 

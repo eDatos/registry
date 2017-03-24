@@ -1,12 +1,41 @@
 package org.siemac.metamac.srm.registry;
 
+import javax.servlet.ServletContextEvent;
+
+import org.siemac.metamac.core.common.conf.ConfigurationService;
 import org.siemac.metamac.core.common.exception.MetamacException;
 import org.siemac.metamac.core.common.listener.ApplicationStartupListener;
+import org.siemac.metamac.core.common.util.WebUtils;
 import org.siemac.metamac.sdmx.data.rest.external.conf.DataConfigurationConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.arte.statistic.sdmx.srm.core.constants.SdmxSrmConfigurationConstants;
 
 public class ApplicationStartup extends ApplicationStartupListener {
+
+    private static final Logger log = LoggerFactory.getLogger(ApplicationStartup.class);
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        configurationService = org.springframework.web.context.support.WebApplicationContextUtils.getRequiredWebApplicationContext(sce.getServletContext()).getBean(ConfigurationService.class);
+        try {
+            checkConfiguration();
+        } catch (MetamacException e) {
+            // Abort startup application
+            throw new RuntimeException(e);
+        }
+        try {
+            WebUtils.setOrganisation(configurationService.retrieveOrganisation());
+            WebUtils.setApiBaseURL(configurationService.retrieveSdmxRegistryExternalApiUrlBase());
+
+            WebUtils.setApiStyleHeaderUrl(configurationService.retrieveApiStyleHeaderUrl());
+            WebUtils.setApiStyleCssUrl(configurationService.retrieveApiStyleCssUrl());
+            WebUtils.setApiStyleFooterUrl(configurationService.retrieveApiStyleFooterUrl());
+        } catch (MetamacException e) {
+            log.error("Error retrieving the organisation from the configuration", e);
+        }
+    }
 
     @Override
     public String projectName() {
