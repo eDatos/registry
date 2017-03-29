@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,17 +25,31 @@ public class RegistryRewriteMatch extends RewriteMatch {
 
     private static final String  SDMX_API_VERSION        = "v2.1";
 
+    private Pattern              apiVersionsListPattern  = Pattern.compile(".*/apis/(" + StringUtils.join(getAcceptedApiPrefixes(), "|") + ")(/?)");
     private Pattern              urlPattern              = Pattern.compile(".*/apis/registry/(" + API_LATEST + "|" + SDMX_API_VERSION + ")(/(.*)?)?");
-    private Pattern              swaggerResourcesPattern = Pattern.compile(".*/apis/(" + "registry" + ")(/swagger-ui/.*)");
+    private Pattern              swaggerResourcesPattern = Pattern.compile(".*/apis/(" + StringUtils.join(getAcceptedApiPrefixes(), "|") + ")(/swagger-ui/.*)");
 
     private ConfigurationService configurationService    = null;
 
+    private static final String  REGISTRY_API_PREFIX     = "registry";
+
+    protected String[] getAcceptedApiPrefixes() {
+        return new String[]{REGISTRY_API_PREFIX};
+    }
+
     @Override
     public boolean execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String requestURI = ((HttpServletRequest) request).getRequestURI();
-        String queryString = ((HttpServletRequest) request).getQueryString();
+        String requestURI = request.getRequestURI();
+        String queryString = request.getQueryString();
         Matcher matcher = urlPattern.matcher(requestURI);
         Matcher swaggerResourcesMatcher = swaggerResourcesPattern.matcher(requestURI);
+        Matcher apiListMatcher = apiVersionsListPattern.matcher(requestURI);
+        if (apiListMatcher.matches()) {
+            ServletContext context = request.getSession().getServletContext();
+            RequestDispatcher requestDispatcher = context.getRequestDispatcher(getApiVersionsListResource());
+            requestDispatcher.forward(request, response);
+            return true;
+        }
         if (swaggerResourcesMatcher.matches() && matcher.groupCount() > 1) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher(swaggerResourcesMatcher.group(2));
             requestDispatcher.forward(request, response);
@@ -83,6 +98,10 @@ public class RegistryRewriteMatch extends RewriteMatch {
         } catch (MetamacException e) {
             throw new ServletException("Error retrieving configuration property of the external API URL base", e);
         }
+    }
+
+    protected String getApiVersionsListResource() {
+        return "/index.jsp";
     }
 
     private ConfigurationService getConfigurationService() {
