@@ -51,7 +51,7 @@ public class RegistryRewriteMatch extends RewriteMatch {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/downloadWadl?path=/apis/registry/v2.1?_wadl");
                 requestDispatcher.forward(request, response);
                 return true;
-            } else if (requestPathAfterVersion != null && requestPathAfterVersion.startsWith("/data")) {
+            } else if (requestPathAfterVersion != null && StringUtils.startsWithAny(requestPathAfterVersion, new String[]{"/data/", "/dataflow"})) {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/data/registry/" + requestApiVersion + requestPathAfterVersion);
                 requestDispatcher.forward(request, response);
                 return true;
