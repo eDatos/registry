@@ -118,6 +118,7 @@ Desktop.ini
 *.*~
 *~
 .merge_file*
+environment-local.xml
 
 ######################
 # Gradle Wrapper
