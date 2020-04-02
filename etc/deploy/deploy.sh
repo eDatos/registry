@@ -2,7 +2,7 @@
 
 HOME_PATH=metamac-registry
 TRANSFER_PATH=$HOME_PATH/tmp
-DEPLOY_TARGET_PATH=/servers/metamac/tomcats/metamac01/webapps
+DEPLOY_TARGET_PATH=/servers/edatos-external/tomcats/edatos-external01/webapps
 ENVIRONMENT_RELATIVE_PATH_FILE=WEB-INF/classes/metamac/environment.xml
 LOGBACK_RELATIVE_PATH_FILE=WEB-INF/classes/logback.xml
 RESTART=1
@@ -19,15 +19,14 @@ ssh deploy@estadisticas.arte-consultores.com <<EOF
     chmod a+x $TRANSFER_PATH/deploy/*.sh;
     . $TRANSFER_PATH/deploy/utilities.sh
 
-    if [ $RESTART -eq 1 ]; then
-        sudo service metamac01 stop
-        checkPROC "metamac"
-    fi
-
-
     ###
     # SDMX REGISTRY
     ###
+
+    if [ $RESTART -eq 1 ]; then
+        sudo service edatos-external01 stop
+        checkPROC "edatos-external"
+    fi
 
     # Update Process
     sudo rm -rf $DEPLOY_TARGET_PATH/sdmx-registry
@@ -40,11 +39,10 @@ ssh deploy@estadisticas.arte-consultores.com <<EOF
     sudo cp $HOME_PATH/logback.xml $DEPLOY_TARGET_PATH/sdmx-registry/$LOGBACK_RELATIVE_PATH_FILE
 
     if [ $RESTART -eq 1 ]; then
-        sudo chown -R metamac.metamac /servers/metamac
-        sudo service metamac01 start
+        sudo chown -R edatos-external.edatos-external /servers/edatos-external        
+        sudo service edatos-external01 start
     fi
 
-    # checkURL "http://estadisticas.arte-consultores.com/registry/v2.1?_wadl" "metamac01"
     echo "Finished deploy"
 
 EOF
