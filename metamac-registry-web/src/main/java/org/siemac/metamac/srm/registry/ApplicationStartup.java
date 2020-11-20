@@ -26,7 +26,7 @@ public class ApplicationStartup extends ApplicationStartupListener {
             throw new RuntimeException(e);
         }
         try {
-            WebUtils.setOrganisation(configurationService.retrieveOrganisation());
+            WebUtils.setAppsBaseUrl(configurationService.retrieveAppsExternalWebApplicationUrlBase());
             WebUtils.setApiBaseURL(configurationService.retrieveSdmxRegistryExternalApiUrlBase());
 
             WebUtils.setApiStyleHeaderUrl(configurationService.retrieveApiStyleHeaderUrl());
