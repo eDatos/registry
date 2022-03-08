@@ -9,7 +9,7 @@
 
     <groupId>org.siemac.metamac.metamac-registry</groupId>
     <artifactId>metamac-registry-parent</artifactId>
-    <version>2.4.1</version>
+    <version>2.4.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SIEMAC :: METAMAC :: REGISTRY :: PARENT</name>
     <description>SIEMAC :: METAMAC :: REGISTRY :: PARENT</description>
@@ -25,9 +25,5 @@
         <dependencies>
         </dependencies>
     </dependencyManagement>
-
-  <scm>
-    <tag>20220308-1105-v2.4.1</tag>
-  </scm>
 </project>
 
